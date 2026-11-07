@@ -28,11 +28,3 @@ jobs:
         run: run: unzip -q goodlook-tv.zip -d .
 
       - name: Build APK
-        run: gradle -p GoodLookTV assembleDebug --stacktrace
-
-      - name: Upload APK
-        uses: actions/upload-artifact@v4
-        with:
-          name: GoodLook-TV-APK
-          path: GoodLookTV/app/build/outputs/apk/debug/*.apk
-          
