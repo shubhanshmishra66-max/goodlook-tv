@@ -25,7 +25,7 @@ jobs:
           gradle-version: '8.9'
 
       - name: Extract project
-        run: unzip -q goodlook-tv.zip
+        run: run: unzip -q goodlook-tv.zip -d .
 
       - name: Build APK
         run: gradle -p GoodLookTV assembleDebug --stacktrace
