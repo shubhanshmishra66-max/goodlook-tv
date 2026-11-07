@@ -19,12 +19,18 @@ jobs:
           distribution: temurin
           java-version: '17'
 
-      - name: Setup Gradle
-        uses: gradle/actions/setup-gradle@v4
-        with:
-          gradle-version: '8.9'
-
       - name: Extract project
-        run: run: unzip -q goodlook-tv.zip -d .
+        run: unzip -q goodlook-tv.zip -d .
 
       - name: Build APK
+        run: |
+          chmod +x GoodLookTV/gradlew
+          cd GoodLookTV
+          ./gradlew assembleDebug
+
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: GoodLook-TV-V2-APK
+          path: GoodLookTV/app/build/outputs/apk/debug/*.apk
+          
