@@ -20,17 +20,14 @@ jobs:
           java-version: '17'
 
       - name: Extract project
-        run: unzip -q goodlook-tv.zip -d .
+  run: |
+    mkdir -p extracted
+    unzip -q goodlook-tv.zip -d extracted
+    ls -la extracted
 
-      - name: Build APK
-        run: |
-          chmod +x GoodLookTV/gradlew
-          cd GoodLookTV
-          ./gradlew assembleDebug
-
-      - name: Upload APK
-        uses: actions/upload-artifact@v4
-        with:
-          name: GoodLook-TV-V2-APK
-          path: GoodLookTV/app/build/outputs/apk/debug/*.apk
-          
+- name: Build APK
+  run: |
+    chmod +x extracted/gradlew
+    cd extracted
+    ./gradlew assembleDebug
+    path: extracted/app/build/outputs/apk/debug/*.apk
